@@ -1,0 +1,42 @@
+<body>
+    <div class="barranav">
+        <a href="app-home-page1">Home page</a>
+    </div>
+
+    <div class="titolo">
+        <h2>Dashboard Galli</h2>
+    </div>
+    <input type="text" [(ngModel)]="barcode" (blur)="verificaEan($event)" placeholder="Barcode" *ngIf="ean">
+    <br><br>
+    <button (click)="vediPrezzo()" *ngIf="vediPrezzoVis">Vedi Prezzo</button>&nbsp;
+    <button (click)="chiudiScontrino()" *ngIf="chiudi" [disabled]="chiudiEnabled">Chiudi Scontrino</button>&nbsp;
+    <button (click)="stornaUltimo()" *ngIf="storna">Storna Ultimo</button>&nbsp;
+    <button (click)="annullaScontrino()" *ngIf="annullaScontrinoVis" [disabled]="annullaScontrinoEnabled">Annulla
+        Scontrino</button>&nbsp;
+    <br>
+    <br>
+    <div>
+        <button (click)="annulla()" *ngIf="confermaVis" [disabled]="confermaEnabled">Annulla</button>&nbsp;
+        <button (click)="conferma()" *ngIf="annullaVis" [disabled]="annullaEnabled">Conferma</button>&nbsp;
+    </div>
+    <p *ngIf="prezzo"> Prezzo : {{prezzoTot}} &euro;</p>
+    <br><br> <br> Ultimo elemento : {{descrizioneE}} {{prezzoE}} &euro;
+    <br>
+    <br>
+    <br>
+    <div class="tabella">
+        <table *ngIf="table">
+            <tr>
+                <th>Quantità</th>
+                <th>Descrizione</th>
+                <th>Prezzo</th>
+            </tr>
+            <tr *ngFor="let r of righeScontrino">
+                <td>{{r.quantita}}</td>
+                <td>{{r.descrizione}}</td>
+                <td>{{r.prezzo}} &euro;</td>
+            </tr>
+        </table>
+        {{messaggioErrore}}
+    </div>
+</body>
